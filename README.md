@@ -66,6 +66,7 @@ DB_NAME=SustabilidadDB
 DB_HOST=localhost
 DB_PORT=5434
 DB_USERNAME=postgres
+CONTAINER_NAME=Example
 
 
 ```

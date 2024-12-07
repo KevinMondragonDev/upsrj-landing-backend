@@ -14,6 +14,7 @@ const common_1 = require("@nestjs/common");
 const app_service_1 = require("./app.service");
 const decorators_1 = require("./auth/decorators");
 const interfaces_1 = require("./auth/interfaces");
+const swagger_1 = require("@nestjs/swagger");
 let AppController = class AppController {
     constructor(appService) {
         this.appService = appService;
@@ -24,14 +25,17 @@ let AppController = class AppController {
 };
 exports.AppController = AppController;
 __decorate([
+    (0, swagger_1.ApiResponse)({ status: 201, description: 'Successfully' }),
+    (0, swagger_1.ApiResponse)({ status: 400, description: 'Bad request due to invalid input' }),
+    (0, swagger_1.ApiResponse)({ status: 403, description: 'Forbidden. Token related issues' }),
     (0, common_1.Get)(),
-    (0, decorators_1.Auth)(interfaces_1.ValidRoles.admin),
+    (0, decorators_1.Auth)(interfaces_1.ValidRoles.user),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", String)
 ], AppController.prototype, "getHello", null);
 exports.AppController = AppController = __decorate([
-    (0, common_1.Controller)(),
+    (0, common_1.Controller)('hello'),
     __metadata("design:paramtypes", [app_service_1.AppService])
 ], AppController);
 //# sourceMappingURL=app.controller.js.map

@@ -30,8 +30,6 @@ exports.AuthModule = AuthModule = __decorate([
                 imports: [config_1.ConfigModule],
                 inject: [config_1.ConfigService],
                 useFactory: (configService) => {
-                    console.log(`Secret Jwt: ${configService.get('JWT_SECRET')}`);
-                    console.log(`Secret Jwt: ${process.env.JWT_SECRET}`);
                     return {
                         secret: configService.get('JWT_SECRET'),
                         signOptions: {

@@ -1,3 +1,4 @@
+import { Permission } from './permissions.entity';
 export declare class User {
     id: string;
     mail: string;
@@ -5,6 +6,6 @@ export declare class User {
     fullName: string;
     isActive: boolean;
     roles: string[];
-    checkFieldsInsert(): void;
-    checkFieldsBeforeUpdate(): void;
+    permissions: Permission[];
+    normalizeFields(): void;
 }

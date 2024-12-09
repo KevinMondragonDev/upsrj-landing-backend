@@ -12,6 +12,7 @@ export declare class AuthController {
         fullName: string;
         isActive: boolean;
         roles: string[];
+        permissions: import("./entities/permissions.entity").Permission[];
     }>;
     loginUser(loginUserDto: LoginUserDto): Promise<{
         token: string;
@@ -21,6 +22,7 @@ export declare class AuthController {
         fullName: string;
         isActive: boolean;
         roles: string[];
+        permissions: import("./entities/permissions.entity").Permission[];
     }>;
     checkAuthStatus(user: User): Promise<{
         token: string;
@@ -30,5 +32,6 @@ export declare class AuthController {
         fullName: string;
         isActive: boolean;
         roles: string[];
+        permissions: import("./entities/permissions.entity").Permission[];
     }>;
 }

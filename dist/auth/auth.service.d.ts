@@ -14,6 +14,7 @@ export declare class AuthService {
         fullName: string;
         isActive: boolean;
         roles: string[];
+        permissions: import("./entities/permissions.entity").Permission[];
     }>;
     checkAuthStatus(user: User): Promise<{
         token: string;
@@ -23,6 +24,7 @@ export declare class AuthService {
         fullName: string;
         isActive: boolean;
         roles: string[];
+        permissions: import("./entities/permissions.entity").Permission[];
     }>;
     login(loginUserDto: LoginUserDto): Promise<{
         token: string;
@@ -32,6 +34,7 @@ export declare class AuthService {
         fullName: string;
         isActive: boolean;
         roles: string[];
+        permissions: import("./entities/permissions.entity").Permission[];
     }>;
     private getJwtToken;
     private handleDBErrors;

@@ -33,6 +33,9 @@ let AuthController = class AuthController {
     checkAuthStatus(user) {
         return this.authService.checkAuthStatus(user);
     }
+    findOne(term) {
+        return this.authService.findOne(term);
+    }
 };
 exports.AuthController = AuthController;
 __decorate([
@@ -66,6 +69,13 @@ __decorate([
     __metadata("design:paramtypes", [user_entity_1.User]),
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "checkAuthStatus", null);
+__decorate([
+    (0, common_1.Get)(':term'),
+    __param(0, (0, common_1.Param)('term')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AuthController.prototype, "findOne", null);
 exports.AuthController = AuthController = __decorate([
     (0, common_1.Controller)('auth'),
     __metadata("design:paramtypes", [auth_service_1.AuthService])

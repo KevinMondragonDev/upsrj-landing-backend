@@ -50,7 +50,8 @@ export class User {
 
     @OneToMany(
         () => Permission,
-        (permission) => permission.user
+        (permission) => permission.user,
+        { cascade: true, eager: true }
     )
     permissions: Permission[];
 

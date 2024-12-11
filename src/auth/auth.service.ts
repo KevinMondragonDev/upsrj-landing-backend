@@ -10,6 +10,7 @@ import { User } from './entities/user.entity';
 import { LoginUserDto, CreateUserDto } from './dto';
 import { JwtPayload } from './interfaces/jwt.payload.interface';
 import { GetUser } from './decorators/get-user.decorator';
+import { Permission } from './entities/permissions.entity';
 
 
 @Injectable()
@@ -17,8 +18,16 @@ export class AuthService {
   constructor( 
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+
+    @InjectRepository(Permission)
+    private readonly permissionRepository: Repository<Permission>,
     private readonly jwtService:JwtService
+
   ){}
+
+  async findOne (term:string){
+    return this.userRepository.findOneBy({ id:term})
+  }
 
   async create(createUserDto: CreateUserDto) {
     try {
@@ -59,7 +68,7 @@ export class AuthService {
     // Buscar el usuario y seleccionar solo el correo y la contraseña
     const user = await this.userRepository.findOne({
         where: { mail: mailLowerCase},
-        select: { mail: true, password: true, id:true },
+        select: { mail: true, password: true, id:true , permissions: true},
     });
     
     // Verificar si el usuario existe

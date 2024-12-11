@@ -68,7 +68,7 @@ __decorate([
     __metadata("design:type", Array)
 ], User.prototype, "roles", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => permissions_entity_1.Permission, (permission) => permission.user),
+    (0, typeorm_1.OneToMany)(() => permissions_entity_1.Permission, (permission) => permission.user, { cascade: true, eager: true }),
     __metadata("design:type", Array)
 ], User.prototype, "permissions", void 0);
 __decorate([

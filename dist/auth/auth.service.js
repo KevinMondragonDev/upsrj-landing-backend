@@ -19,10 +19,15 @@ const jwt_1 = require("@nestjs/jwt");
 const bcrypt = require("bcrypt");
 const typeorm_2 = require("typeorm");
 const user_entity_1 = require("./entities/user.entity");
+const permissions_entity_1 = require("./entities/permissions.entity");
 let AuthService = class AuthService {
-    constructor(userRepository, jwtService) {
+    constructor(userRepository, permissionRepository, jwtService) {
         this.userRepository = userRepository;
+        this.permissionRepository = permissionRepository;
         this.jwtService = jwtService;
+    }
+    async findOne(term) {
+        return this.userRepository.findOneBy({ id: term });
     }
     async create(createUserDto) {
         try {
@@ -55,7 +60,7 @@ let AuthService = class AuthService {
         const mailLowerCase = mail.toLowerCase().trim();
         const user = await this.userRepository.findOne({
             where: { mail: mailLowerCase },
-            select: { mail: true, password: true, id: true },
+            select: { mail: true, password: true, id: true, permissions: true },
         });
         if (!user) {
             throw new common_1.UnauthorizedException(`Credenciales incorrectas`);
@@ -86,7 +91,9 @@ exports.AuthService = AuthService;
 exports.AuthService = AuthService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
+    __param(1, (0, typeorm_1.InjectRepository)(permissions_entity_1.Permission)),
     __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository,
         jwt_1.JwtService])
 ], AuthService);
 //# sourceMappingURL=auth.service.js.map

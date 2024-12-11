@@ -34,4 +34,5 @@ export declare class AuthController {
         roles: string[];
         permissions: import("./entities/permissions.entity").Permission[];
     }>;
+    findOne(term: string): Promise<User>;
 }

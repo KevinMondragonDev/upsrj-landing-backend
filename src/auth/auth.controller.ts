@@ -43,4 +43,10 @@ export class AuthController {
     return this.authService.checkAuthStatus(user)
   }
 
+  @Get(':term')
+  findOne(@Param( 'term' ) term: string){
+    return this.authService.findOne(term)
+  }
+
+  
 }

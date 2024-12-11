@@ -16,7 +16,7 @@ export class Permission {
     @ManyToOne(
         () => User,
         (user) => user.permissions,
-        { eager: true }
+       
     )
     user: User;
 

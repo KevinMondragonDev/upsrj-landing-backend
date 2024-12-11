@@ -16,7 +16,7 @@ const auth_service_1 = require("./auth.service");
 const user_entity_1 = require("./entities/user.entity");
 const auth_controller_1 = require("./auth.controller");
 const jwt_strategy_1 = require("./strategies/jwt.strategy");
-const permissions_entity_1 = require("./entities/permissions.entity");
+const permissions_entity_1 = require("../permission/entities/permissions.entity");
 let AuthModule = class AuthModule {
 };
 exports.AuthModule = AuthModule;

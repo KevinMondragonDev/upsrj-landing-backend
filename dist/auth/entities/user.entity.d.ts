@@ -1,7 +1,7 @@
-import { Permission } from './permissions.entity';
+import { Permission } from '../../permission/entities/permissions.entity';
 export declare class User {
     id: string;
-    mail: string;
+    email: string;
     password: string;
     fullName: string;
     isActive: boolean;

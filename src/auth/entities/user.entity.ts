@@ -1,48 +1,48 @@
-// user.entity.ts
 import { ApiProperty } from '@nestjs/swagger';
 import { BeforeInsert, BeforeUpdate, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Permission } from './permissions.entity';
+import { Permission } from '../../permission/entities/permissions.entity';
 
 @Entity({ name: 'users' })
 export class User {
-
     @ApiProperty({
-        description: 'Identificador único del usuario',
+        description: 'Unique identifier of the user',
         type: String,
     })
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
     @ApiProperty({
-        description: 'Correo del usuario',
+        description: 'Email address of the user',
         type: String,
     })
     @Column('text', { unique: true })
-    mail: string;
+    email: string;
 
     @ApiProperty({
-        description: 'Contraseña de los usuarios',
+        description: 'Password of the user',
         type: String,
     })
     @Column('text', { select: false })
     password: string;
 
     @ApiProperty({
-        description: 'Nombre completo de los usuarios',
+        description: 'Full name of the user',
         type: String,
     })
     @Column('text')
     fullName: string;
 
     @ApiProperty({
-        description: 'Indica si el usuario está activo',
+        description: 'Indicates whether the user is active',
         type: Boolean,
     })
     @Column('bool', { default: true })
     isActive: boolean;
 
+
+    // *!  Los permisos seran con el modulo permissions dinamicos y especificos, asi que esto se debe eliminar
     @ApiProperty({
-        description: 'Roles del usuario: admin, super-user, user, etc. Por defecto es "user"',
+        description: 'Roles of the user: admin, super-user, user, etc. Default is "user"',
         type: [String],
     })
     @Column('text', { array: true, default: ['user'] })
@@ -51,13 +51,13 @@ export class User {
     @OneToMany(
         () => Permission,
         (permission) => permission.user,
-        { cascade: true, eager: true }
+        { cascade: true }
     )
     permissions: Permission[];
 
     @BeforeInsert()
     @BeforeUpdate()
     normalizeFields() {
-        this.mail = this.mail.toLowerCase().trim();
+        this.email = this.email.toLowerCase().trim();
     }
 }

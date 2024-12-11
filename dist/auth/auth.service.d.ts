@@ -2,7 +2,7 @@ import { JwtService } from '@nestjs/jwt';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { LoginUserDto, CreateUserDto } from './dto';
-import { Permission } from './entities/permissions.entity';
+import { Permission } from '../permission/entities/permissions.entity';
 export declare class AuthService {
     private readonly userRepository;
     private readonly permissionRepository;
@@ -12,7 +12,7 @@ export declare class AuthService {
     create(createUserDto: CreateUserDto): Promise<{
         token: string;
         id: string;
-        mail: string;
+        email: string;
         password: string;
         fullName: string;
         isActive: boolean;
@@ -22,7 +22,7 @@ export declare class AuthService {
     checkAuthStatus(user: User): Promise<{
         token: string;
         id: string;
-        mail: string;
+        email: string;
         password: string;
         fullName: string;
         isActive: boolean;
@@ -32,7 +32,7 @@ export declare class AuthService {
     login(loginUserDto: LoginUserDto): Promise<{
         token: string;
         id: string;
-        mail: string;
+        email: string;
         password: string;
         fullName: string;
         isActive: boolean;

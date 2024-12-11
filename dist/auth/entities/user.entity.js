@@ -12,16 +12,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const typeorm_1 = require("typeorm");
-const permissions_entity_1 = require("./permissions.entity");
+const permissions_entity_1 = require("../../permission/entities/permissions.entity");
 let User = class User {
     normalizeFields() {
-        this.mail = this.mail.toLowerCase().trim();
+        this.email = this.email.toLowerCase().trim();
     }
 };
 exports.User = User;
 __decorate([
     (0, swagger_1.ApiProperty)({
-        description: 'Identificador único del usuario',
+        description: 'Unique identifier of the user',
         type: String,
     }),
     (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
@@ -29,15 +29,15 @@ __decorate([
 ], User.prototype, "id", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        description: 'Correo del usuario',
+        description: 'Email address of the user',
         type: String,
     }),
     (0, typeorm_1.Column)('text', { unique: true }),
     __metadata("design:type", String)
-], User.prototype, "mail", void 0);
+], User.prototype, "email", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        description: 'Contraseña de los usuarios',
+        description: 'Password of the user',
         type: String,
     }),
     (0, typeorm_1.Column)('text', { select: false }),
@@ -45,7 +45,7 @@ __decorate([
 ], User.prototype, "password", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        description: 'Nombre completo de los usuarios',
+        description: 'Full name of the user',
         type: String,
     }),
     (0, typeorm_1.Column)('text'),
@@ -53,7 +53,7 @@ __decorate([
 ], User.prototype, "fullName", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        description: 'Indica si el usuario está activo',
+        description: 'Indicates whether the user is active',
         type: Boolean,
     }),
     (0, typeorm_1.Column)('bool', { default: true }),
@@ -61,14 +61,14 @@ __decorate([
 ], User.prototype, "isActive", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        description: 'Roles del usuario: admin, super-user, user, etc. Por defecto es "user"',
+        description: 'Roles of the user: admin, super-user, user, etc. Default is "user"',
         type: [String],
     }),
     (0, typeorm_1.Column)('text', { array: true, default: ['user'] }),
     __metadata("design:type", Array)
 ], User.prototype, "roles", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => permissions_entity_1.Permission, (permission) => permission.user, { cascade: true, eager: true }),
+    (0, typeorm_1.OneToMany)(() => permissions_entity_1.Permission, (permission) => permission.user, { cascade: true }),
     __metadata("design:type", Array)
 ], User.prototype, "permissions", void 0);
 __decorate([

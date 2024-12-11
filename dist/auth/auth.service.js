@@ -19,7 +19,7 @@ const jwt_1 = require("@nestjs/jwt");
 const bcrypt = require("bcrypt");
 const typeorm_2 = require("typeorm");
 const user_entity_1 = require("./entities/user.entity");
-const permissions_entity_1 = require("./entities/permissions.entity");
+const permissions_entity_1 = require("../permission/entities/permissions.entity");
 let AuthService = class AuthService {
     constructor(userRepository, permissionRepository, jwtService) {
         this.userRepository = userRepository;
@@ -56,11 +56,11 @@ let AuthService = class AuthService {
         };
     }
     async login(loginUserDto) {
-        const { password, mail } = loginUserDto;
-        const mailLowerCase = mail.toLowerCase().trim();
+        const { password, email } = loginUserDto;
+        const mailLowerCase = email.toLowerCase().trim();
         const user = await this.userRepository.findOne({
-            where: { mail: mailLowerCase },
-            select: { mail: true, password: true, id: true, permissions: true },
+            where: { email: mailLowerCase },
+            select: { email: true, password: true, id: true, permissions: true },
         });
         if (!user) {
             throw new common_1.UnauthorizedException(`Credenciales incorrectas`);

@@ -14,6 +14,7 @@ const common_module_1 = require("./common/common.module");
 const auth_module_1 = require("./auth/auth.module");
 const config_1 = require("@nestjs/config");
 const typeorm_1 = require("@nestjs/typeorm");
+const permission_module_1 = require("./permission/permission.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -33,6 +34,7 @@ exports.AppModule = AppModule = __decorate([
             }),
             common_module_1.CommonModule,
             auth_module_1.AuthModule,
+            permission_module_1.PermissionModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

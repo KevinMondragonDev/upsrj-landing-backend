@@ -1,13 +1,11 @@
-// permissions.entity.ts
 import { ApiProperty } from '@nestjs/swagger';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { User } from './user.entity';
+import { Column, Entity, Index, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { User } from '../../auth/entities/user.entity';
 
 @Entity({ name: 'permissions' })
 export class Permission {
-
     @ApiProperty({
-        description: 'Identificador único del permiso',
+        description: 'Unique identifier of the permission',
         type: String,
     })
     @PrimaryGeneratedColumn('uuid')
@@ -15,41 +13,40 @@ export class Permission {
 
     @ManyToOne(
         () => User,
-        (user) => user.permissions,
-       
+        (user) => user.permissions
     )
     user: User;
 
     @ApiProperty({
-        description: 'Nombre del módulo',
+        description: 'Module name that is assigned in an interface',
         type: String,
     })
     @Column('text')
-    module: string;
-
+    module_name: string;
+   
     @ApiProperty({
-        description: 'Permiso para crear recursos',
+        description: 'Permission to create resources',
         type: Boolean,
     })
     @Column('bool', { default: false })
     create: boolean;
 
     @ApiProperty({
-        description: 'Permiso para leer recursos',
+        description: 'Permission to read resources',
         type: Boolean,
     })
     @Column('bool', { default: false })
     read: boolean;
 
     @ApiProperty({
-        description: 'Permiso para actualizar recursos',
+        description: 'Permission to update resources',
         type: Boolean,
     })
     @Column('bool', { default: false })
     update: boolean;
 
     @ApiProperty({
-        description: 'Permiso para eliminar recursos',
+        description: 'Permission to delete resources',
         type: Boolean,
     })
     @Column('bool', { default: false })

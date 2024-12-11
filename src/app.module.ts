@@ -5,7 +5,7 @@ import { CommonModule } from './common/common.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-
+import { PermissionModule } from './permission/permission.module';
 
 @Module({
   imports: [
@@ -23,7 +23,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     }),
     
     CommonModule,
-    AuthModule,],
+    AuthModule,
+    PermissionModule,
+    ],
   controllers: [AppController],
   providers: [AppService],
 

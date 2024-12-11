@@ -7,32 +7,32 @@ export declare class AuthController {
     createUser(createUserDto: CreateUserDto): Promise<{
         token: string;
         id: string;
-        mail: string;
+        email: string;
         password: string;
         fullName: string;
         isActive: boolean;
         roles: string[];
-        permissions: import("./entities/permissions.entity").Permission[];
+        permissions: import("../permission/entities/permissions.entity").Permission[];
     }>;
     loginUser(loginUserDto: LoginUserDto): Promise<{
         token: string;
         id: string;
-        mail: string;
+        email: string;
         password: string;
         fullName: string;
         isActive: boolean;
         roles: string[];
-        permissions: import("./entities/permissions.entity").Permission[];
+        permissions: import("../permission/entities/permissions.entity").Permission[];
     }>;
     checkAuthStatus(user: User): Promise<{
         token: string;
         id: string;
-        mail: string;
+        email: string;
         password: string;
         fullName: string;
         isActive: boolean;
         roles: string[];
-        permissions: import("./entities/permissions.entity").Permission[];
+        permissions: import("../permission/entities/permissions.entity").Permission[];
     }>;
     findOne(term: string): Promise<User>;
 }

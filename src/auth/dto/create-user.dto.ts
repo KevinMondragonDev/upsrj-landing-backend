@@ -11,7 +11,7 @@ export class CreateUserDto{
     @IsString()
     @IsNotEmpty()
     @IsEmail()
-    mail:string;
+    email:string;
 
     @ApiProperty({
         example: 'Abc123',

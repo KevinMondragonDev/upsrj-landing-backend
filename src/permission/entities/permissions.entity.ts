@@ -11,12 +11,6 @@ export class Permission {
     @PrimaryGeneratedColumn('uuid')
     id_permission: string;
 
-    @ManyToOne(
-        () => User,
-        (user) => user.permissions
-    )
-    user: User;
-
     @ApiProperty({
         description: 'Module name that is assigned in an interface',
         type: String,
@@ -51,4 +45,10 @@ export class Permission {
     })
     @Column('bool', { default: false })
     delete: boolean;
+
+    @ManyToOne(
+        () => User,
+        (user) => user.permissions
+    )
+    user: User;
 }

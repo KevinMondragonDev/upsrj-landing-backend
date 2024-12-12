@@ -1,50 +1,53 @@
-
 import { ApiProperty } from '@nestjs/swagger';
-import { Column, Entity, Index, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { User } from '../../auth/entities/user.entity';
-import { IsIn, IsNotEmpty, IsString } from 'class-validator';
+import { IsBoolean, IsIn, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { ValidModules } from 'src/common/interfaces/valid-modules';
 
-@Entity({ name: 'permissions' })
-export class Permission {
-
+export class CreatePermissionDto {
 
     @ApiProperty({
-        description: 'Module name that is assigned in an interface',
+        description: 'The name of the module for which the permission is being assigned. Must be a valid module.',
         type: String,
+        enum: ValidModules,
     })
     @IsString()
     @IsNotEmpty()
-    // *! Esto debe ser cambiado por una interfaz 
-    @IsIn(['dark', 'light', 'system'], { message: 'Theme must be one of: dark, light, system' })
+    @IsIn(Object.values(ValidModules), { message: 'Module must be one of the valid modules' })
     module_name: string;
-   
-    @ApiProperty({
-        description: 'Permission to create resources',
-        type: Boolean,
-    })
-    create: boolean;
 
     @ApiProperty({
-        description: 'Permission to read resources',
+        description: 'Permission to create resources (default: false)',
         type: Boolean,
+        default: false,
     })
-  
-    read: boolean;
+    @IsBoolean()
+    @IsOptional()
+    create?: boolean;
 
     @ApiProperty({
-        description: 'Permission to update resources',
+        description: 'Permission to read resources (default: false)',
         type: Boolean,
+        default: false,
     })
-
-    update: boolean;
+    @IsBoolean()
+    @IsOptional()
+    read?: boolean;
 
     @ApiProperty({
-        description: 'Permission to delete resources',
+        description: 'Permission to update resources (default: false)',
         type: Boolean,
+        default: false,
     })
+    @IsBoolean()
+    @IsOptional()
+    update?: boolean;
 
-    delete: boolean;
+    @ApiProperty({
+        description: 'Permission to delete resources (default: false)',
+        type: Boolean,
+        default: false,
+    })
+    @IsBoolean()
+    @IsOptional()
+    delete?: boolean;
 }
 
-
-export class CreatePermissionDto {}

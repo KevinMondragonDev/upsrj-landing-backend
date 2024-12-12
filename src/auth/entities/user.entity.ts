@@ -39,7 +39,6 @@ export class User {
     @Column('bool', { default: true })
     isActive: boolean;
 
-
     // *!  Los permisos seran con el modulo permissions dinamicos y especificos, asi que esto se debe eliminar
     @ApiProperty({
         description: 'Roles of the user: admin, super-user, user, etc. Default is "user"',
@@ -51,7 +50,7 @@ export class User {
     @OneToMany(
         () => Permission,
         (permission) => permission.user,
-        { cascade: true }
+        { cascade: true , eager: true }
     )
     permissions: Permission[];
 
